@@ -6,7 +6,7 @@ BLAS_INC  := $(HOME)/blis/include/blis
 # indicate how the object files are to be created
 CC         := gcc
 LINKER     := $(CC)
-CFLAGS     := -O3 -I$(BLAS_INC) -m64 -mavx2 -std=c99 -march=native -fopenmp
+CFLAGS     := -O3 -I$(BLAS_INC) -m64 -mavx2 -std=c99 -march=native -fopenmp -D_POSIX_C_SOURCE=200809L
 FFLAGS     := $(CFLAGS) 
 
 # set the range of experiments to be performed

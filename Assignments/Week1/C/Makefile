@@ -6,14 +6,14 @@ BLAS_INC  := $(HOME)/blis/include/blis
 # indicate how the object files are to be created
 CC         := gcc
 LINKER     := $(CC)
-CFLAGS     := -O3 -I$(BLAS_INC) -m64 -mavx2 -std=c99 -march=native
+CFLAGS     := -O3 -I$(BLAS_INC) -m64 -mavx2 -std=c99 -march=native -D_POSIX_C_SOURCE=200809L
 FFLAGS     := $(CFLAGS) 
 
 # set the range of experiments to be performed
 NREPEATS   := 3#       number of times each experiment is repeated.  The best time is reported.
 NFIRST     := 48#     smallest size to be timed.
 NLAST_SMALL:= 500#    largest size to be timed for slow implementations.
-NLAST      := 2000#   largest size to be timed for fast implementations.
+NLAST      := 1500#   largest size to be timed for fast implementations.
 NINC       := 48#     increment between sizes.
 
 LDFLAGS    := -lpthread -m64 -lm 
@@ -330,25 +330,25 @@ P_Ger_I_Axpy: driver_P_Ger_I_Axpy.x
 
 # ---------------------
 
-OBJS_P_DGER := driver.o Gemm_P_dger.o
+OBJS_P_bli_dger := driver.o Gemm_P_bli_dger.o
 
-driver_P_dger.x: $(OBJS_P_DGER) $(UTIL_OBJS)
-	$(LINKER) $(OBJS_P_DGER) $(UTIL_OBJS) $(BLAS_LIB) -o driver_P_dger.x $(LDFLAGS) 
-
-P_dger: driver_P_dger.x
-	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_P_dger.x >  data/output_P_dger.m
-	tail data/output_P_dger.m
-
-# ---------------------
-
-OBJS_P_BLI_DGER := driver.o Gemm_P_bli_dger.o
-
-driver_P_bli_dger.x: $(OBJS_P_BLI_DGER) $(UTIL_OBJS)
-	$(LINKER) $(OBJS_P_BLI_DGER) $(UTIL_OBJS) $(BLAS_LIB) -o driver_P_bli_dger.x $(LDFLAGS) 
+driver_P_bli_dger.x: $(OBJS_P_bli_dger) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_P_bli_dger) $(UTIL_OBJS) $(BLAS_LIB) -o driver_P_bli_dger.x $(LDFLAGS) 
 
 P_bli_dger: driver_P_bli_dger.x
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_P_bli_dger.x >  data/output_P_bli_dger.m
 	tail data/output_P_bli_dger.m
+
+# ---------------------
+
+OBJS_P_dger := driver.o Gemm_P_dger.o
+
+driver_P_dger.x: $(OBJS_P_dger) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_P_dger) $(UTIL_OBJS) $(BLAS_LIB) -o driver_P_dger.x $(LDFLAGS) 
+
+P_dger: driver_P_dger.x
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_P_dger.x >  data/output_P_dger.m
+	tail data/output_P_dger.m
 
 # ---------------------
 
@@ -363,10 +363,10 @@ J_Gemv_J_Axpy: driver_J_Gemv_J_Axpy.x
 
 # ---------------------
 
-OBJS_J_GEMV_I_Dots := driver.o Gemm_J_Gemv.o Gemv_J_Axpy.o Dots.o
+OBJS_J_GEMV_I_Dots = driver.o Gemm_J_Gemv.o Gemv_I_Dots.o Dots.o
 
-driver_J_Gemv_I_Dots.x: $(OBJS_J_GEMV_J_Axpy) $(UTIL_OBJS)
-	$(LINKER) $(OBJS_J_GEMV_J_Axpy) $(UTIL_OBJS) $(BLAS_LIB) -o driver_J_Gemv_I_Dots.x $(LDFLAGS) 
+driver_J_Gemv_I_Dots.x: $(OBJS_J_GEMV_I_Dots) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_J_GEMV_I_Dots) $(UTIL_OBJS) $(BLAS_LIB) -o driver_J_Gemv_I_Dots.x $(LDFLAGS) 
 
 J_Gemv_I_Dots: driver_J_Gemv_I_Dots.x
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_J_Gemv_I_Dots.x > data/output_J_Gemv_I_Dots.m data/output_J_Gemv_I_Dots.m
@@ -380,7 +380,7 @@ driver_J_dgemv.x: $(OBJS_J_dgemv) $(UTIL_OBJS)
 	$(LINKER) $(OBJS_J_dgemv) $(UTIL_OBJS) $(BLAS_LIB) -o driver_J_dgemv.x $(LDFLAGS) 
 
 J_dgemv: driver_J_dgemv.x
-	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_J_dgemv.x > data/output_J_dgemv.m data/output_J_dgemv.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_J_dgemv.x > data/output_J_dgemv.m data/output_J_dgemv.m
 	tail data/output_J_dgemv.m
 
 # ---------------------
@@ -393,6 +393,17 @@ driver_J_bli_dgemv.x: $(OBJS_J_bli_dgemv) $(UTIL_OBJS)
 J_bli_dgemv: driver_J_bli_dgemv.x
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_J_bli_dgemv.x > data/output_J_bli_dgemv.m data/output_J_bli_dgemv.m
 	tail data/output_J_bli_dgemv.m
+
+# ---------------------
+
+OBJS_J_Gemv_JI := driver.o Gemm_J_Gemv.o Gemv_JI.o
+
+driver_J_Gemv_JI.x: $(OBJS_J_Gemv_JI) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_J_Gemv_JI) $(UTIL_OBJS) $(BLAS_LIB) -o driver_J_Gemv_JI.x $(LDFLAGS) 
+
+J_Gemv_JI: driver_J_Gemv_JI.x
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_J_Gemv_JI.x > data/output_J_Gemv_JI.m data/output_J_Gemv_JI.m
+	tail data/output_J_Gemv_JI.m
 
 # ---------------------
 
@@ -492,8 +503,11 @@ Outer_I:
 Outer_J:
 	make JIP
 	make JPI
+	make J_Gemv_I_Dots
+	make J_Gemv_J_Axpy
 	make J_dgemv
 	make J_bli_dgemv
+	make J_Gemv_JI
 
 # ---------------------                                                               
 Outer_P:
