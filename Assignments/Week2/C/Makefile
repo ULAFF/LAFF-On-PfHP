@@ -16,7 +16,7 @@ NLAST_SMALL:= 500#    largest size to be timed for slow implementations.
 NLAST      := 1500#   largest size to be timed for fast implementations.
 NINC       := 48#     increment between sizes.
 
-LDFLAGS    := -lpthread -m64 -lm 
+LDFLAGS    := -lpthread -m64 -lm -fopenmp
 
 UTIL_OBJS  := FLA_Clock.o MaxAbsDiff.o RandomMatrix.o
 
