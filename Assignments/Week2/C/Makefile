@@ -77,14 +77,78 @@ JI_P_Ger: driver_JI_P_Ger.x
 
 # ---------------------
 
+OBJS_JI_4x1Kernel := driver.o Gemm_JI_4x1Kernel.o 
+
+driver_JI_4x1Kernel.x: $(OBJS_JI_4x1Kernel) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_JI_4x1Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_4x1Kernel.x $(LDFLAGS) 
+
+JI_4x1Kernel: driver_JI_4x1Kernel.x
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_4x1Kernel.x > data/output_JI_4x1Kernel.m 
+	tail data/output_JI_4x1Kernel.m
+
+# ---------------------
+
+OBJS_JI_4x2Kernel := driver.o Gemm_JI_4x2Kernel.o 
+
+driver_JI_4x2Kernel.x: $(OBJS_JI_4x2Kernel) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_JI_4x2Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_4x2Kernel.x $(LDFLAGS) 
+
+JI_4x2Kernel: driver_JI_4x2Kernel.x
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_4x2Kernel.x > data/output_JI_4x2Kernel.m 
+	tail data/output_JI_4x2Kernel.m
+
+# ---------------------
+
 OBJS_JI_4x4Kernel := driver.o Gemm_JI_4x4Kernel.o 
 
 driver_JI_4x4Kernel.x: $(OBJS_JI_4x4Kernel) $(UTIL_OBJS)
 	$(LINKER) $(OBJS_JI_4x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_4x4Kernel.x $(LDFLAGS) 
 
 JI_4x4Kernel: driver_JI_4x4Kernel.x
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_4x4Kernel.x > data/output_JI_4x4Kernel.m 
-	tail data/output_JI_4x4Kernel.m
+
+# ---------------------
+
+OBJS_JI_4x8Kernel := driver.o Gemm_JI_4x8Kernel.o 
+
+driver_JI_4x8Kernel.x: $(OBJS_JI_4x8Kernel) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_JI_4x8Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_4x8Kernel.x $(LDFLAGS) 
+
+JI_4x8Kernel: driver_JI_4x8Kernel.x
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_4x8Kernel.x > data/output_JI_4x8Kernel.m 
+	tail data/output_JI_4x8Kernel.m
+
+# ---------------------
+
+OBJS_JI_4x12Kernel := driver.o Gemm_JI_4x12Kernel.o 
+
+driver_JI_4x12Kernel.x: $(OBJS_JI_4x12Kernel) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_JI_4x12Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_4x12Kernel.x $(LDFLAGS) 
+
+JI_4x12Kernel: driver_JI_4x12Kernel.x
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_4x12Kernel.x > data/output_JI_4x12Kernel.m 
+	tail data/output_JI_4x12Kernel.m
+
+# ---------------------
+
+OBJS_JI_8x1Kernel := driver.o Gemm_JI_8x1Kernel.o 
+
+driver_JI_8x1Kernel.x: $(OBJS_JI_8x1Kernel) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_JI_8x1Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_8x1Kernel.x $(LDFLAGS) 
+
+JI_8x1Kernel: driver_JI_8x1Kernel.x
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_8x1Kernel.x > data/output_JI_8x1Kernel.m 
+	tail data/output_JI_8x1Kernel.m
+
+# ---------------------
+
+OBJS_JI_8x2Kernel := driver.o Gemm_JI_8x2Kernel.o 
+
+driver_JI_8x2Kernel.x: $(OBJS_JI_8x2Kernel) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_JI_8x2Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_8x2Kernel.x $(LDFLAGS) 
+
+JI_8x2Kernel: driver_JI_8x2Kernel.x
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_8x2Kernel.x > data/output_JI_8x2Kernel.m 
+	tail data/output_JI_8x2Kernel.m
 
 # ---------------------
 
@@ -99,28 +163,6 @@ JI_8x4Kernel: driver_JI_8x4Kernel.x
 
 # ---------------------
 
-OBJS_JI_12x4Kernel := driver.o Gemm_JI_12x4Kernel.o 
-
-driver_JI_12x4Kernel.x: $(OBJS_JI_12x4Kernel) $(UTIL_OBJS)
-	$(LINKER) $(OBJS_JI_12x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_12x4Kernel.x $(LDFLAGS) 
-
-JI_12x4Kernel: driver_JI_12x4Kernel.x
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_12x4Kernel.x > data/output_JI_12x4Kernel.m 
-	tail data/output_JI_12x4Kernel.m
-
-# ---------------------
-
-OBJS_JI_4x6Kernel := driver.o Gemm_JI_4x6Kernel.o 
-
-driver_JI_4x6Kernel.x: $(OBJS_JI_4x6Kernel) $(UTIL_OBJS)
-	$(LINKER) $(OBJS_JI_4x6Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_4x6Kernel.x $(LDFLAGS) 
-
-JI_4x6Kernel: driver_JI_4x6Kernel.x
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_4x6Kernel.x > data/output_JI_4x6Kernel.m 
-	tail data/output_JI_4x6Kernel.m
-
-# ---------------------
-
 OBJS_JI_8x6Kernel := driver.o Gemm_JI_8x6Kernel.o 
 
 driver_JI_8x6Kernel.x: $(OBJS_JI_8x6Kernel) $(UTIL_OBJS)
@@ -132,36 +174,58 @@ JI_8x6Kernel: driver_JI_8x6Kernel.x
 
 # ---------------------
 
-OBJS_JI_4x8Kernel := driver.o Gemm_JI_4x8Kernel.o 
+OBJS_JI_8x8Kernel := driver.o Gemm_JI_8x8Kernel.o 
 
-driver_JI_4x8Kernel.x: $(OBJS_JI_4x8Kernel) $(UTIL_OBJS)
-	$(LINKER) $(OBJS_JI_4x8Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_4x8Kernel.x $(LDFLAGS) 
+driver_JI_8x8Kernel.x: $(OBJS_JI_8x8Kernel) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_JI_8x8Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_8x8Kernel.x $(LDFLAGS) 
 
-JI_4x8Kernel: driver_JI_4x8Kernel.x
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_4x8Kernel.x > data/output_JI_4x8Kernel.m 
-	tail data/output_JI_8x6Kernel.m
-
-# ---------------------
-
-OBJS_JI_4x10Kernel := driver.o Gemm_JI_4x10Kernel.o 
-
-driver_JI_4x10Kernel.x: $(OBJS_JI_4x10Kernel) $(UTIL_OBJS)
-	$(LINKER) $(OBJS_JI_4x10Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_4x10Kernel.x $(LDFLAGS) 
-
-JI_4x10Kernel: driver_JI_4x10Kernel.x
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_4x10Kernel.x > data/output_JI_4x10Kernel.m 
-	tail data/output_JI_4x10Kernel.m
+JI_8x8Kernel: driver_JI_8x8Kernel.x
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_8x8Kernel.x > data/output_JI_8x8Kernel.m 
+	tail data/output_JI_8x8Kernel.m
 
 # ---------------------
 
-OBJS_JI_4x12Kernel := driver.o Gemm_JI_4x12Kernel.o 
+OBJS_JI_12x1Kernel := driver.o Gemm_JI_12x1Kernel.o 
 
-driver_JI_4x12Kernel.x: $(OBJS_JI_4x12Kernel) $(UTIL_OBJS)
-	$(LINKER) $(OBJS_JI_4x12Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_4x12Kernel.x $(LDFLAGS) 
+driver_JI_12x1Kernel.x: $(OBJS_JI_12x1Kernel) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_JI_12x1Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_12x1Kernel.x $(LDFLAGS) 
 
-JI_4x12Kernel: driver_JI_4x12Kernel.x
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_4x12Kernel.x > data/output_JI_4x12Kernel.m 
-	tail data/output_JI_4x12Kernel.m
+JI_12x1Kernel: driver_JI_12x1Kernel.x
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_12x1Kernel.x > data/output_JI_12x1Kernel.m 
+	tail data/output_JI_12x1Kernel.m
+
+# ---------------------
+
+OBJS_JI_12x2Kernel := driver.o Gemm_JI_12x2Kernel.o 
+
+driver_JI_12x2Kernel.x: $(OBJS_JI_12x2Kernel) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_JI_12x2Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_12x2Kernel.x $(LDFLAGS) 
+
+JI_12x2Kernel: driver_JI_12x2Kernel.x
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_12x2Kernel.x > data/output_JI_12x2Kernel.m 
+	tail data/output_JI_12x2Kernel.m
+
+# ---------------------
+
+OBJS_JI_12x4Kernel := driver.o Gemm_JI_12x4Kernel.o 
+
+driver_JI_12x4Kernel.x: $(OBJS_JI_12x4Kernel) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_JI_12x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_12x4Kernel.x $(LDFLAGS) 
+
+JI_12x4Kernel: driver_JI_12x4Kernel.x
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_12x4Kernel.x > data/output_JI_12x4Kernel.m 
+	tail data/output_JI_12x4Kernel.m
+
+# ---------------------
+
+OBJS_JI_12x6Kernel := driver.o Gemm_JI_12x6Kernel.o 
+
+driver_JI_12x6Kernel.x: $(OBJS_JI_12x6Kernel) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_JI_12x6Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_12x6Kernel.x $(LDFLAGS) 
+
+JI_12x6Kernel: driver_JI_12x6Kernel.x
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_12x6Kernel.x > data/output_JI_12x6Kernel.m 
+	tail data/output_JI_12x6Kernel.m
 
 # ---------------------                                                               
 clean:
