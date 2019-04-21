@@ -1,31 +1,10 @@
-#include <stdlib.h>
-#include <stdio.h>
-
 #define alpha( i,j ) A[ (j)*ldA + (i) ]   // map alpha( i,j ) to array A
 #define beta( i,j )  B[ (j)*ldB + (i) ]   // map beta( i,j ) to array B
 #define gamma( i,j ) C[ (j)*ldC + (i) ]   // map gamma( i,j ) to array C
 
-#define MR 4
-#define NR 4
-
-void Gemm_4x4Kernel( int, double *, int, double *, int, double *, int );
-
-void MyGemm( int m, int n, int k, double *A, int ldA,
-	     double *B, int ldB, double *C, int ldC )
-{
-  if ( m % MR != 0 || n % NR != 0 ){
-    printf( "m and n must be multiples of MR and NR, respectively \n" );
-    exit( 0 );
-  }
-  
-  for ( int j=0; j<n; j+=NR ) /* n is assumed to be a multiple of NR */
-    for ( int i=0; i<m; i+=MR ) /* m is assumed to be a multiple of MR */
-      Gemm_4x4Kernel( k, &alpha( i,0 ), ldA, &beta( 0,j ), ldB, &gamma( i,j ), ldC );
-}
-
 #include<immintrin.h>
 
-void Gemm_4x4Kernel( int k, double *A, int ldA, double *B, int ldB,
+void Gemm_MRxNRKernel( int k, double *A, int ldA, double *B, int ldB,
 		double *C, int ldC )
 {
   /* Declare vector registers to hold 4x4 C and load them */
@@ -51,6 +30,7 @@ void Gemm_4x4Kernel( int k, double *A, int ldA, double *B, int ldB,
     
     /* REPEAT for second, third, and fourth columns of C.  Notice that the 
        current column of A needs not be reloaded. */
+
 
   }
   
