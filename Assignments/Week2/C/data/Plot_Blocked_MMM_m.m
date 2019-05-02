@@ -8,7 +8,8 @@
 % of a new performance curve by changing "( 0 )" to "( 1 )" in the appropriate 
 % place.
 
-plot_colors = [ 0 0 0; 0 0 1; 0 1 0; 0 1 1; 1 0 0; 1 0 1; 1 1 0; 1 1 1];
+% load plot colors
+my_plot_colors;
 
 % Create figure
 figure1 = figure('Name','GFLOPS');
@@ -38,13 +39,22 @@ if ( 1 )
       'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 3,: ) );
 end
 
+% Plot performance data for PJI
+if ( 1 )
+  output_PJI   % load data for JPI ordering
+  assert( max(abs(data(:,6))) < 1.0e-10, ...
+      'Hmmm, better check if there is an accuracy problem');
+  plot( data(:,1), data(:,5), 'DisplayName', 'PJI', 'MarkerSize', 8, 'LineWidth', 2, ...
+      'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 4,: ) );
+end
+
 % Plot time data for JIP_PJI (to plot change "0" to "1")
-if ( 0 ) 
+if ( 1 ) 
   output_JIP_PJI
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
   plot( data(:,1), data(:,5), 'DisplayName', 'JIP\_PJI', 'MarkerSize', 8, 'LineWidth', 2, ...
-        'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 4,: ) );
+        'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 5,: ) );
 end
 
 % Plot time data for JI_PJI  (to plot change "0" to "1")
@@ -53,7 +63,7 @@ if ( 0 )
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
   plot( data(:,1), data(:,5), 'DisplayName', 'JI\_PJI', 'MarkerSize', 8, 'LineWidth', 2, ...
-        'Marker', 'o', 'LineStyle', '-', 'Color', plot_colors( 5,: ) );
+        'Marker', 'o', 'LineStyle', '-', 'Color', plot_colors( 6,: ) );
 end
 
 % Optionally show the reference implementation performance data
@@ -79,5 +89,5 @@ legend2 = legend( axes2, 'show' );
 set( legend2, 'Location', 'northeast', 'FontSize', 18) ;
 
 % Uncomment if you want to create a pdf for the graph
-% print( 'Plot_Blocked_MMM.png', '-dpng' );
+print( 'Plot_Blocked_MMM.png', '-dpng' );
 %%

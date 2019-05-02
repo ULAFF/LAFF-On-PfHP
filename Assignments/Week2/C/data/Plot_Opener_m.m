@@ -16,10 +16,10 @@ system( 'cp ../../../Week1/C/data/output_IPJ.m .' );
 system( 'cp ../../../Week1/C/data/output_JIP.m .' );
 % system( 'cp ../../../Week1/C/data/output_JPI.m .' );   % uncomment me out if you don't rerun 'make JPI' in Week2/C
 system( 'cp ../../../Week1/C/data/output_PIJ.m .' );
-system( 'cp ../../../Week1/C/data/output_PJI.m .' );
-%% 
-% 
-plot_colors = [ 0 0 0; 0 0 1; 0 1 0; 0 1 1; 1 0 0; 1 0 1; 1 1 0; 1 1 1];
+system( 'cp ../../../Week1/C/data/output_PJI.m .' )
+
+% load plot colors
+my_plot_colors;
 
 % Create figure
 figure1 = figure('Name','GFLOPS');
