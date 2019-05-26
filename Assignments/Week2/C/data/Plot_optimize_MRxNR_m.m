@@ -9,7 +9,8 @@
 % of a new performance curve by changing "( 0 )" to "( 1 )" in the appropriate 
 % place.
 
-plot_colors = [ 0 0 0; 0 0 1; 0 1 0; 0 1 1; 1 0 0; 1 0 1; 1 1 0; 1 1 1];
+% load plot colors
+my_plot_colors;
 
 % Create figure
 figure1 = figure('Name','GFLOPS');
@@ -66,6 +67,15 @@ if ( 1 )
         'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 3,: ) );
 end
 
+% Plot time data for JI_4x6Kernel (to plot change "0" to "1")
+if ( 1 ) 
+  output_JI_4x6Kernel
+  assert( max(abs(data(:,6))) < 1.0e-10, ...
+      'Hmmm, better check if there is an accuracy problem');
+  plot( data(:,1), data(:,5), 'DisplayName', 'JI\_4x6Kernel', 'MarkerSize', 8, 'LineWidth', 2, ...
+        'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 6,: ) );
+end
+
 % Plot time data for JI_4x8Kernel  (to plot change "0" to "1")
 if ( 0 ) 
   output_JI_4x8Kernel
@@ -82,15 +92,6 @@ if ( 0 )
       'Hmmm, better check if there is an accuracy problem');
   plot( data(:,1), data(:,5), 'DisplayName', 'JI\_4x12Kernel', 'MarkerSize', 8, 'LineWidth', 2, ...
         'Marker', 'o', 'LineStyle', '-', 'Color', plot_colors( 5,: ) );
-end
-
-% Plot time data for JI_4x14Kernel  (to plot change "0" to "1")
-if ( 0 ) 
-  output_JI_4x14Kernel
-  assert( max(abs(data(:,6))) < 1.0e-10, ...
-      'Hmmm, better check if there is an accuracy problem');
-  plot( data(:,1), data(:,5), 'DisplayName', 'JI\_4x14Kernel', 'MarkerSize', 8, 'LineWidth', 2, ...
-        'Marker', 'o', 'LineStyle', '-', 'Color', plot_colors( 6,: ) );
 end
 
 % Plot time data for JI_8x1Kernel  (to plot change "0" to "1")
