@@ -9,8 +9,8 @@ figure1 = figure('Name','Figure1');
 axes1 = axes('Parent',figure1);
 hold(axes1,'on');
 
-% output_PI_JI_12x4_MCxKC        % load performance data
-output_Five_Loops_Packed_12x4Kernel_MCxKC
+output_PI_JI_12x4_MCxKC        % load performance data
+% output_Five_Loops_Packed_12x4Kernel_MCxKC
 
 colorbar;   % show the color bar
 colormap jet;
