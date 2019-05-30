@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
   double
     *A, *B, *C, *Cold, *Cref;
 
-  /* Every time trial is repeated "repeat" times and the fastest run in recorded */
+  /* Every time trial is repeated "repeat" times and the fastest run is recorded */
   printf( "%% number of repeats:" );
   scanf( "%d", &nrepeats );
   printf( "%% %d\n", nrepeats );

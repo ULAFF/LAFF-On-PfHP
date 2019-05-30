@@ -1,4 +1,5 @@
-#HOME      := /Users/rvdg
+# HOME      := /Users/rvdg
+
 # Make sure you have BLIS installed in your home directory (or some other BLAS library)
 BLAS_LIB  := $(HOME)/blis/lib/libblis.a
 BLAS_INC  := $(HOME)/blis/include/blis
@@ -10,7 +11,7 @@ CFLAGS     := -O3 -I$(BLAS_INC) -m64 -mavx2 -std=c99 -march=native -fopenmp -D_P
 FFLAGS     := $(CFLAGS) 
 
 # set the range of experiments to be performed
-NREPEATS   := 3#       number of times each experiment is repeated.  The best time is reported.
+NREPEATS   := 3#      number of times each experiment is repeated.  The best time is reported.
 NFIRST     := 48#     smallest size to be timed.
 NLAST_SMALL:= 500#    largest size to be timed for slow implementations.
 NLAST      := 1500#   largest size to be timed for fast implementations.

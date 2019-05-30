@@ -102,7 +102,7 @@ PI_JI_12x4Kernel:  $(SRC_PI_JI_12x4Kernel) $(UTIL_OBJS) Makefile
 
 # ---------------------
 
-SRC_PI_JI_12x4_MCxKC := Gemm_PI_JI_MCxKC.c Gemm_12x4Kernel.c
+SRC_PI_JI_12x4_MCxKC := Gemm_PI_JI_MCxKCKernel.c Gemm_12x4Kernel.c
 
 PI_JI_12x4_MCxKC: $(OBJS_PI_JI_12x4_MCxKC) $(UTIL_OBJS) Makefile
 	$(LINKER) $(CFLAGS) $(SRC_PI_JI_12x4_MCxKC) -D'MR=12' -D'NR=4' driver_MCxKC.c $(UTIL_OBJS) $(BLAS_LIB) -o driver_PI_JI_12x4_MCxKC.x $(LDFLAGS) 
