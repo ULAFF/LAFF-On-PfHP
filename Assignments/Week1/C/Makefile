@@ -381,7 +381,7 @@ driver_J_dgemv.x: $(OBJS_J_dgemv) $(UTIL_OBJS)
 	$(LINKER) $(OBJS_J_dgemv) $(UTIL_OBJS) $(BLAS_LIB) -o driver_J_dgemv.x $(LDFLAGS) 
 
 J_dgemv: driver_J_dgemv.x
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_J_dgemv.x > data/output_J_dgemv.m data/output_J_dgemv.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_J_dgemv.x > data/output_J_dgemv.m data/output_J_dgemv.m
 	tail data/output_J_dgemv.m
 
 # ---------------------
