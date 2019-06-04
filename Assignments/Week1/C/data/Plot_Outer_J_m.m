@@ -1,8 +1,7 @@
 %% Performance of implementations of loop orderings with outer loop indexed with "J"
 %% This Live Script
 % This Live Script helps you visualize the performance of implementations that 
-% order the loops so that the "J" loop is the outer-most loop:  Gemm_JIP.c, Gemm_J_Gemv_J_Axpy.c, 
-% Gemm_J_Gemv_I_Dots.c, Gemm_J_Gemv_J_daxpy.c, etc.
+% order the loops so that the "J" loop is the outer-most loop:  Gemm_JIP.c, etc.
 % 
 % To gather the performance data, in the command (terminal) window change the 
 % directory to Assignments/Week1/C/.  After implementing the various versions,  
@@ -100,6 +99,8 @@ if ( 0 )
         'Marker', 'o', 'LineStyle', '--', 'Color', plot_colors( 7,: ) );
 end
 
+legend2 = legend( axes2, 'show' );
+set( legend2, 'Location', 'southeast', 'FontSize', 18) ;
 
 % Adjust the x-axis and y-axis range to start at 0
 v = axis;                   % extract the current ranges
