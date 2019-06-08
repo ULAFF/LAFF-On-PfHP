@@ -89,7 +89,7 @@ if ( 0 )
       'Hmmm, better check if there is an accuracy problem');
   plot( data(:,1), data(:,5), 'DisplayName', 'P\_dger', 'MarkerSize', 8, 'LineWidth', 2, ...
         'Marker', 'o', 'LineStyle', '--', 'Color', plot_colors( 6,: ) );
-EndogenousGlucoseProduction
+end
 
 % Adjust the x-axis and y-axis range to start at 0
 v = axis;                   % extract the current ranges
