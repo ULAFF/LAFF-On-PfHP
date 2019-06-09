@@ -29,10 +29,20 @@
 % 
 % When completed, various data is in output file 'output_XYZ.m' (for XYZ $$ 
 % \in $$ {IJP,IPJ,JIP,JPI,PIJ,PJI}) in the same directory where you found this 
-% Live Script (LAFF-On-HPC/Assignments/Week1/C/data/).  This Life Script then 
-% creates graphs from that timing data.  Go ahead and click on "Run All".  It 
-% executes all the code in the rest of this file.  You will want to look at the 
-% graphs this creates.
+% Live Script (LAFF-On-HPC/Assignments/Week1/C/data/).  This Live Script then 
+% creates graphs from that timing data for the orderings that are selected in 
+% the Live Script by placing a 1 in the if statement right before the appropriate 
+% section of the Live Script, and for the JIP ordering (the section for which 
+% is not enclosed by a conditional statement). Plot_All_Orderings.mlx as downloaded 
+% already has a 1 in the if statement right before the PIJ ordering. Go ahead 
+% and click on "Run All".  It executes all the code in the rest of this file which, 
+% as distributed, creates a graph showing the performance of the IJP and PIJ orderings. 
+% Matlab may warn you that it cannot reach some of the code in the Live Script. 
+% This is because the sections with some of the orderings is preceded by a condition 
+% (0), that always evaluates to false. Change the zeros to ones in the if statements 
+% before the orderings for which you created data and re-run the Live Script to 
+% see a graph showing the performance of those orderings.  You will want to look 
+% at the graphs this creates.
 
 plot_colors = [ 0 0 0; 0 0 1; 0 1 0; 0 1 1; 1 0 0; 1 0 1; 1 1 0; 1 1 1];
 
