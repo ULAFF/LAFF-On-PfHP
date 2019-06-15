@@ -1,0 +1,24 @@
+clean:
+	rm Assignments/Week0/C/*.c
+	rm Assignments/Week0/C/*.o
+	rm Assignments/Week0/C/*.x
+	rm Assignments/Week1/C/*.c
+	rm Assignments/Week1/C/*.o
+	rm Assignments/Week1/C/*.x
+	rm Assignments/Week1/C/data/*
+	rm Assignments/Week1/C/*.c
+	rm Assignments/Week1/C/*.o
+	rm Assignments/Week1/C/*.x
+	rm Assignments/Week1/C/data/*
+	rm Assignments/Week2/C/*.c
+	rm Assignments/Week2/C/*.o
+	rm Assignments/Week2/C/*.x
+	rm Assignments/Week2/C/data/*
+	rm Assignments/Week3/C/*.c
+	rm Assignments/Week3/C/*.o
+	rm Assignments/Week3/C/*.x
+	rm Assignments/Week3/C/data/*
+	rm Assignments/Week4/C/*.c
+	rm Assignments/Week4/C/*.o
+	rm Assignments/Week4/C/*.x
+	rm Assignments/Week4/C/data/*
