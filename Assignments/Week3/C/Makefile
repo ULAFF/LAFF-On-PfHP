@@ -23,9 +23,9 @@ UTIL_OBJS  := FLA_Clock.o MaxAbsDiff.o RandomMatrix.o
 
 # -------------- Set blocking parameters ----------
 
-MC :=  276
+MC :=  264
 KC :=  48
-NC := 1008
+NC := 2016
 
 # ---------------------
 
@@ -48,12 +48,48 @@ IJP_JI_12x4Kernel:  $(SRC_IJP_JI_12x4Kernel) $(UTIL_OBJS) Makefile
 
 # ---------------------
 
+SRC_IJP_JI_8x6Kernel := driver.c Gemm_IJP_JI_MRxNRKernel.c Gemm_8x6Kernel.c 
+
+IJP_JI_8x6Kernel:  $(SRC_IJP_JI_8x6Kernel) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'MR=8' -D'NR=6' $(SRC_IJP_JI_8x6Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IJP_JI_8x6Kernel.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_IJP_JI_8x6Kernel.x > data/output_IJP_JI_8x6Kernel.m 
+	tail data/output_IJP_JI_8x6Kernel.m
+
+# ---------------------
+
+SRC_IJP_JI_8x4Kernel := driver.c Gemm_IJP_JI_MRxNRKernel.c Gemm_8x4Kernel.c 
+
+IJP_JI_8x4Kernel:  $(SRC_IJP_JI_8x4Kernel) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'MR=8' -D'NR=4' $(SRC_IJP_JI_8x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IJP_JI_8x4Kernel.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_IJP_JI_8x4Kernel.x > data/output_IJP_JI_8x4Kernel.m 
+	tail data/output_IJP_JI_8x4Kernel.m
+
+# ---------------------
+
 SRC_IPJ_JI_12x4Kernel := driver.c Gemm_IPJ_JI_MRxNRKernel.c Gemm_12x4Kernel.c 
 
 IPJ_JI_12x4Kernel:  $(SRC_IPJ_JI_12x4Kernel) $(UTIL_OBJS) Makefile
 	$(LINKER) $(CFLAGS) -D'MR=12' -D'NR=4' $(SRC_IPJ_JI_12x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IPJ_JI_12x4Kernel.x $(LDFLAGS) 
 	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_IPJ_JI_12x4Kernel.x > data/output_IPJ_JI_12x4Kernel.m 
 	tail data/output_IPJ_JI_12x4Kernel.m
+
+# ---------------------
+
+SRC_IPJ_JI_8x6Kernel := driver.c Gemm_IPJ_JI_MRxNRKernel.c Gemm_8x6Kernel.c 
+
+IPJ_JI_8x6Kernel:  $(SRC_IPJ_JI_8x6Kernel) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'MR=8' -D'NR=6' $(SRC_IPJ_JI_8x6Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IPJ_JI_8x6Kernel.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_IPJ_JI_8x6Kernel.x > data/output_IPJ_JI_8x6Kernel.m 
+	tail data/output_IPJ_JI_8x6Kernel.m
+
+# ---------------------
+
+SRC_IPJ_JI_8x4Kernel := driver.c Gemm_IPJ_JI_MRxNRKernel.c Gemm_8x4Kernel.c 
+
+IPJ_JI_8x4Kernel:  $(SRC_IPJ_JI_8x4Kernel) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'MR=8' -D'NR=4' $(SRC_IPJ_JI_8x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IPJ_JI_8x4Kernel.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_IPJ_JI_8x4Kernel.x > data/output_IPJ_JI_8x4Kernel.m 
+	tail data/output_IPJ_JI_8x4Kernel.m
 
 # ---------------------
 
@@ -66,12 +102,48 @@ JIP_JI_12x4Kernel:  $(SRC_JIP_JI_12x4Kernel) $(UTIL_OBJS) Makefile
 
 # ---------------------
 
+SRC_JIP_JI_8x6Kernel := driver.c Gemm_JIP_JI_MRxNRKernel.c Gemm_8x6Kernel.c 
+
+JIP_JI_8x6Kernel:  $(SRC_JIP_JI_8x6Kernel) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'MR=8' -D'NR=6' $(SRC_JIP_JI_8x6Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JIP_JI_8x6Kernel.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JIP_JI_8x6Kernel.x > data/output_JIP_JI_8x6Kernel.m 
+	tail data/output_JIP_JI_8x6Kernel.m
+
+# ---------------------
+
+SRC_JIP_JI_8x4Kernel := driver.c Gemm_JIP_JI_MRxNRKernel.c Gemm_8x4Kernel.c 
+
+JIP_JI_8x4Kernel:  $(SRC_JIP_JI_8x4Kernel) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'MR=8' -D'NR=4' $(SRC_JIP_JI_8x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JIP_JI_8x4Kernel.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JIP_JI_8x4Kernel.x > data/output_JIP_JI_8x4Kernel.m 
+	tail data/output_JIP_JI_8x4Kernel.m
+
+# ---------------------
+
 SRC_JPI_JI_12x4Kernel := driver.c Gemm_JPI_JI_MRxNRKernel.c Gemm_12x4Kernel.c 
 
 JPI_JI_12x4Kernel:  $(SRC_JPI_JI_12x4Kernel) $(UTIL_OBJS) Makefile
 	$(LINKER) $(CFLAGS) -D'MR=12' -D'NR=4' $(SRC_JPI_JI_12x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JPI_JI_12x4Kernel.x $(LDFLAGS) 
 	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JPI_JI_12x4Kernel.x > data/output_JPI_JI_12x4Kernel.m 
 	tail data/output_JPI_JI_12x4Kernel.m
+
+# ---------------------
+
+SRC_JPI_JI_8x6Kernel := driver.c Gemm_JPI_JI_MRxNRKernel.c Gemm_8x6Kernel.c 
+
+JPI_JI_8x6Kernel:  $(SRC_JPI_JI_8x6Kernel) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'MR=8' -D'NR=6' $(SRC_JPI_JI_8x6Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JPI_JI_8x6Kernel.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JPI_JI_8x6Kernel.x > data/output_JPI_JI_8x6Kernel.m 
+	tail data/output_JPI_JI_8x6Kernel.m
+
+# ---------------------
+
+SRC_JPI_JI_8x4Kernel := driver.c Gemm_JPI_JI_MRxNRKernel.c Gemm_8x4Kernel.c 
+
+JPI_JI_8x4Kernel:  $(SRC_JPI_JI_8x4Kernel) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'MR=8' -D'NR=4' $(SRC_JPI_JI_8x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JPI_JI_8x4Kernel.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JPI_JI_8x4Kernel.x > data/output_JPI_JI_8x4Kernel.m 
+	tail data/output_JPI_JI_8x4Kernel.m
 
 # ---------------------
 
@@ -84,12 +156,48 @@ PIJ_JI_12x4Kernel:  $(SRC_PIJ_JI_12x4Kernel) $(UTIL_OBJS) Makefile
 
 # ---------------------
 
+SRC_PIJ_JI_8x6Kernel := driver.c Gemm_PIJ_JI_MRxNRKernel.c Gemm_8x6Kernel.c 
+
+PIJ_JI_8x6Kernel:  $(SRC_PIJ_JI_8x6Kernel) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'MR=8' -D'NR=6' $(SRC_PIJ_JI_8x6Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_PIJ_JI_8x6Kernel.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_PIJ_JI_8x6Kernel.x > data/output_PIJ_JI_8x6Kernel.m 
+	tail data/output_PIJ_JI_8x6Kernel.m
+
+# ---------------------
+
+SRC_PIJ_JI_8x4Kernel := driver.c Gemm_PIJ_JI_MRxNRKernel.c Gemm_8x4Kernel.c 
+
+PIJ_JI_8x4Kernel:  $(SRC_PIJ_JI_8x4Kernel) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'MR=8' -D'NR=4' $(SRC_PIJ_JI_8x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_PIJ_JI_8x4Kernel.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_PIJ_JI_8x4Kernel.x > data/output_PIJ_JI_8x4Kernel.m 
+	tail data/output_PIJ_JI_8x4Kernel.m
+
+# ---------------------
+
 SRC_PJI_JI_12x4Kernel := driver.c Gemm_PJI_JI_MRxNRKernel.c Gemm_12x4Kernel.c 
 
 PJI_JI_12x4Kernel:  $(SRC_PJI_JI_12x4Kernel) $(UTIL_OBJS) Makefile
 	$(LINKER) $(CFLAGS) -D'MR=12' -D'NR=4' $(SRC_PJI_JI_12x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_PJI_JI_12x4Kernel.x $(LDFLAGS) 
 	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_PJI_JI_12x4Kernel.x > data/output_PJI_JI_12x4Kernel.m 
 	tail data/output_PJI_JI_12x4Kernel.m
+
+# ---------------------
+
+SRC_PJI_JI_8x6Kernel := driver.c Gemm_PJI_JI_MRxNRKernel.c Gemm_8x6Kernel.c 
+
+PJI_JI_8x6Kernel:  $(SRC_PJI_JI_8x6Kernel) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'MR=8' -D'NR=6' $(SRC_PJI_JI_8x6Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_PJI_JI_8x6Kernel.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_PJI_JI_8x6Kernel.x > data/output_PJI_JI_8x6Kernel.m 
+	tail data/output_PJI_JI_8x6Kernel.m
+
+# ---------------------
+
+SRC_PJI_JI_8x4Kernel := driver.c Gemm_PJI_JI_MRxNRKernel.c Gemm_8x4Kernel.c 
+
+PJI_JI_8x4Kernel:  $(SRC_PJI_JI_8x4Kernel) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'MR=8' -D'NR=4' $(SRC_PJI_JI_8x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_PJI_JI_8x4Kernel.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_PJI_JI_8x4Kernel.x > data/output_PJI_JI_8x4Kernel.m 
+	tail data/output_PJI_JI_8x4Kernel.m
 
 # ---------------------
 
@@ -102,12 +210,48 @@ PI_JI_12x4Kernel:  $(SRC_PI_JI_12x4Kernel) $(UTIL_OBJS) Makefile
 
 # ---------------------
 
+SRC_PI_JI_8x6Kernel := driver.c Gemm_PI_JI_MRxNRKernel.c Gemm_8x6Kernel.c 
+
+PI_JI_8x6Kernel:  $(SRC_PI_JI_8x6Kernel) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'MR=8' -D'NR=6' $(SRC_PI_JI_8x6Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_PI_JI_8x6Kernel.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_PI_JI_8x6Kernel.x > data/output_PI_JI_8x6Kernel.m 
+	tail data/output_PI_JI_8x6Kernel.m
+
+# ---------------------
+
+SRC_PI_JI_8x4Kernel := driver.c Gemm_PI_JI_MRxNRKernel.c Gemm_8x4Kernel.c 
+
+PI_JI_8x4Kernel:  $(SRC_PI_JI_8x4Kernel) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'MR=8' -D'NR=4' $(SRC_PI_JI_8x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_PI_JI_8x4Kernel.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_PI_JI_8x4Kernel.x > data/output_PI_JI_8x4Kernel.m 
+	tail data/output_PI_JI_8x4Kernel.m
+
+# ---------------------
+
 SRC_PI_JI_12x4_MCxKC := Gemm_PI_JI_MCxKC.c Gemm_12x4Kernel.c
 
 PI_JI_12x4_MCxKC: $(OBJS_PI_JI_12x4_MCxKC) $(UTIL_OBJS) Makefile
 	$(LINKER) $(CFLAGS) $(SRC_PI_JI_12x4_MCxKC) -D'MR=12' -D'NR=4' driver_MCxKC.c $(UTIL_OBJS) $(BLAS_LIB) -o driver_PI_JI_12x4_MCxKC.x $(LDFLAGS) 
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALLISH) $(NINC)" | ./driver_PI_JI_12x4_MCxKC.x > data/output_PI_JI_12x4_MCxKC.m 
 	tail data/output_PI_JI_12x4_MCxKC.m
+
+# ---------------------
+
+SRC_PI_JI_8x6_MCxKC := Gemm_PI_JI_MCxKC.c Gemm_8x6Kernel.c
+
+PI_JI_8x6_MCxKC: $(OBJS_PI_JI_8x6_MCxKC) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) $(SRC_PI_JI_8x6_MCxKC) -D'MR=8' -D'NR=6' driver_MCxKC.c $(UTIL_OBJS) $(BLAS_LIB) -o driver_PI_JI_8x6_MCxKC.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALLISH) $(NINC)" | ./driver_PI_JI_8x6_MCxKC.x > data/output_PI_JI_8x6_MCxKC.m 
+	tail data/output_PI_JI_8x6_MCxKC.m
+
+# ---------------------
+
+SRC_PI_JI_8x4_MCxKC := Gemm_PI_JI_MCxKC.c Gemm_8x4Kernel.c
+
+PI_JI_8x4_MCxKC: $(OBJS_PI_JI_8x4_MCxKC) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) $(SRC_PI_JI_8x4_MCxKC) -D'MR=8' -D'NR=4' driver_MCxKC.c $(UTIL_OBJS) $(BLAS_LIB) -o driver_PI_JI_8x4_MCxKC.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALLISH) $(NINC)" | ./driver_PI_JI_8x4_MCxKC.x > data/output_PI_JI_8x4_MCxKC.m 
+	tail data/output_PI_JI_8x4_MCxKC.m
 
 # ---------------------
 
@@ -156,62 +300,50 @@ Five_Loops_Packed_12x4Kernel:  $(SRC_Five_Loops_Packed_12x4Kernel) $(UTIL_OBJS) 
 
 # ---------------------
 
-# Remake if Makefile is changed in case MC, NC, KC changed
-Gemm_Five_Loops_Packed_8x6Kernel.o: Gemm_Five_Loops_Packed_MRxNRKernel.c Makefile
-	$(CC) $(CFLAGS) -D'NC=$(NC)' -D'KC=$(KC)' -D'MC=$(MC)' -D'MR=8' -D'NR=6' -o Gemm_Five_Loops_Packed_8x6Kernel.o -c Gemm_Five_Loops_Packed_MRxNRKernel.c
+SRC_Five_Loops_Packed_8x6Kernel := driver.c Gemm_Five_Loops_Packed_MRxNRKernel.c Gemm_8x6Kernel_Packed.c PackA.c PackB.c
 
-PackA_8x6.o: PackA.c Makefile
-	$(CC) $(CFLAGS) -D'NC=$(NC)' -D'KC=$(KC)' -D'MC=$(MC)' -D'MR=8' -D'NR=6' -o PackA_8x6.o -c Packed_8x6.c
-
-PackB_8x6.o: PackB.c Makefile
-	$(CC) $(CFLAGS) -D'NC=$(NC)' -D'KC=$(KC)' -D'MC=$(MC)' -D'MR=8' -D'NR=6' -o PackB_8x6.o -c Packed_8x6.c
-
-Gemm_8x6Kernel_Packed.o: Gemm_8x6Kernel_Packed.c Makefile
-	$(CC) $(CFLAGS) -D'NC=$(NC)' -D'KC=$(KC)' -D'MC=$(MC)' -D'MR=8' -D'NR=6' -o Gemm_8x6Kernel_Packed.o -c Gemm_8x6Kernel_Packed.c
-
-OBJS_Five_Loops_Packed_8x6Kernel := driver.o Gemm_Five_Loops_Packed_8x6Kernel.o Gemm_8x6Kernel_Packed.o 
-
-driver_Five_Loops_Packed_8x6Kernel.x: $(OBJS_Five_Loops_Packed_8x6Kernel) $(UTIL_OBJS) Makefile
-	$(LINKER) $(OBJS_Five_Loops_Packed_8x6Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Five_Loops_Packed_8x6Kernel.x $(LDFLAGS) 
-
-Five_Loops_Packed_8x6Kernel: driver_Five_Loops_Packed_8x6Kernel.x
+Five_Loops_Packed_8x6Kernel:  $(SRC_Five_Loops_Packed_8x6Kernel) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'MC=$(MC)' -D'NC=$(NC)' -D'KC=$(KC)' -D'MR=8' -D'NR=6' $(SRC_Five_Loops_Packed_8x6Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Five_Loops_Packed_8x6Kernel.x $(LDFLAGS) 
 	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Five_Loops_Packed_8x6Kernel.x > data/output_Five_Loops_Packed_8x6Kernel.m 
 	tail data/output_Five_Loops_Packed_8x6Kernel.m
 
+
 # ---------------------
 
-NC := 1008
+SRC_Five_Loops_Packed_8x4Kernel := driver.c Gemm_Five_Loops_Packed_MRxNRKernel.c Gemm_8x4Kernel_Packed.c PackA.c PackB.c
 
-# Remake if Makefile is changed in case MC, NC, KC changed
-Gemm_Five_Loops_Packed_12x4Kernel_MCxKC.o: Gemm_Five_Loops_Packed_MRxNRKernel_MCxKC.c Makefile
-	$(CC) $(CFLAGS) -D'NC=$(NC)' -D'MR=12' -D'NR=4' -o Gemm_Five_Loops_Packed_12x4Kernel_MCxKC.o -c Gemm_Five_Loops_Packed_MRxNRKernel_MCxKC.c
+Five_Loops_Packed_8x4Kernel:  $(SRC_Five_Loops_Packed_8x4Kernel) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'MC=$(MC)' -D'NC=$(NC)' -D'KC=$(KC)' -D'MR=8' -D'NR=4' $(SRC_Five_Loops_Packed_8x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Five_Loops_Packed_8x4Kernel.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Five_Loops_Packed_8x4Kernel.x > data/output_Five_Loops_Packed_8x4Kernel.m 
+	tail data/output_Five_Loops_Packed_8x4Kernel.m
 
-OBJS_Five_Loops_Packed_12x4Kernel_MCxKC := Gemm_Five_Loops_Packed_12x4Kernel_MCxKC.o Gemm_12x4Kernel_Packed.o 
 
-driver_Five_Loops_Packed_12x4Kernel_MCxKC.x: $(OBJS_Five_Loops_Packed_12x4Kernel_MCxKC) $(UTIL_OBJS) Makefile
-	$(LINKER) $(OBJS_Five_Loops_Packed_12x4Kernel_MCxKC) -D'MR=12' -D'NR=4' driver_MCxKC.c $(UTIL_OBJS) $(BLAS_LIB) -o driver_Five_Loops_Packed_12x4Kernel_MCxKC.x $(LDFLAGS) 
+# ---------------------
 
-Five_Loops_Packed_12x4Kernel_MCxKC: driver_Five_Loops_Packed_12x4Kernel_MCxKC.x
+SRC_Five_Loops_Packed_12x4Kernel_MCxKC := driver_MCxKC.c Gemm_Five_Loops_Packed_MRxNRKernel_MCxKC.c Gemm_12x4Kernel_Packed.c PackA.c PackB.c
+
+Five_Loops_Packed_12x4Kernel_MCxKC:  $(SRC_Five_Loops_Packed_12x4Kernel_MCxKC) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'NC=$(NC)' -D'MR=12' -D'NR=4' $(SRC_Five_Loops_Packed_12x4Kernel_MCxKC) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Five_Loops_Packed_12x4Kernel_MCxKC.x $(LDFLAGS) 
 	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Five_Loops_Packed_12x4Kernel_MCxKC.x > data/output_Five_Loops_Packed_12x4Kernel_MCxKC.m 
 	tail data/output_Five_Loops_Packed_12x4Kernel_MCxKC.m
 
 # ---------------------
 
-NC := 1008
+SRC_Five_Loops_Packed_8x6Kernel_MCxKC := driver_MCxKC.c Gemm_Five_Loops_Packed_MRxNRKernel_MCxKC.c Gemm_8x6Kernel_Packed.c PackA.c PackB.c
 
-# Remake if Makefile is changed in case MC, NC, KC changed
-Gemm_Five_Loops_Packed_8x6Kernel_MCxKC.o: Gemm_Five_Loops_Packed_MRxNRKernel_MCxKC.c Makefile
-	$(CC) $(CFLAGS) -D'NC=$(NC)' -D'MR=8' -D'NR=6' -o Gemm_Five_Loops_Packed_8x6Kernel_MCxKC.o -c Gemm_Five_Loops_Packed_MRxNRKernel_MCxKC.c
-
-OBJS_Five_Loops_Packed_8x6Kernel_MCxKC := Gemm_Five_Loops_Packed_8x6Kernel_MCxKC.o Gemm_8x6Kernel_Packed.o 
-
-driver_Five_Loops_Packed_8x6Kernel_MCxKC.x: $(OBJS_Five_Loops_Packed_8x6Kernel_MCxKC) $(UTIL_OBJS) Makefile
-	$(LINKER) $(OBJS_Five_Loops_Packed_8x6Kernel_MCxKC) -D'MR=8' -D'NR=6' driver_MCxKC.c $(UTIL_OBJS) $(BLAS_LIB) -o driver_Five_Loops_Packed_8x6Kernel_MCxKC.x $(LDFLAGS) 
-
-Five_Loops_Packed_8x6Kernel_MCxKC: driver_Five_Loops_Packed_8x6Kernel_MCxKC.x
+Five_Loops_Packed_8x6Kernel_MCxKC:  $(SRC_Five_Loops_Packed_8x6Kernel_MCxKC) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'NC=$(NC)' -D'MR=8' -D'NR=6' $(SRC_Five_Loops_Packed_8x6Kernel_MCxKC) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Five_Loops_Packed_8x6Kernel_MCxKC.x $(LDFLAGS) 
 	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Five_Loops_Packed_8x6Kernel_MCxKC.x > data/output_Five_Loops_Packed_8x6Kernel_MCxKC.m 
 	tail data/output_Five_Loops_Packed_8x6Kernel_MCxKC.m
 
+# ---------------------
+
+SRC_Five_Loops_Packed_8x4Kernel_MCxKC := driver_MCxKC.c Gemm_Five_Loops_Packed_MRxNRKernel_MCxKC.c Gemm_8x4Kernel_Packed.c PackA.c PackB.c
+
+Five_Loops_Packed_8x4Kernel_MCxKC:  $(SRC_Five_Loops_Packed_8x4Kernel_MCxKC) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'NC=$(NC)' -D'MR=8' -D'NR=4' $(SRC_Five_Loops_Packed_8x4Kernel_MCxKC) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Five_Loops_Packed_8x4Kernel_MCxKC.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Five_Loops_Packed_8x4Kernel_MCxKC.x > data/output_Five_Loops_Packed_8x4Kernel_MCxKC.m 
+	tail data/output_Five_Loops_Packed_8x4Kernel_MCxKC.m
 
 # ---------------------                                                               
 clean:

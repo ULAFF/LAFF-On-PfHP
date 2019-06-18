@@ -40,7 +40,7 @@ if ( 1 )
 end
 
 % Plot performance data for JI_12x4Kernel
-if ( 1 )
+if ( 0 )
   system( 'cp ../../../Week2/C/data/output_JI_12x4Kernel.m .' );
   output_JI_12x4Kernel   % load data
   assert( max(abs(data(:,6))) < 1.0e-10, ...
@@ -95,7 +95,7 @@ if ( 0 )
 end
 
 % Plot time data for PIJ_JI_12x4Kernel  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_PIJ_JI_12x4Kernel 
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
