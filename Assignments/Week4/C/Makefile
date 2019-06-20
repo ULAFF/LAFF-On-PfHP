@@ -161,7 +161,7 @@ SRC_MT_Loop5_8x6Kernel := driver.c Gemm_MT_Loop5_MRxNRKernel.c Gemm_8x6Kernel_Pa
 
 MT_Loop5_8x6Kernel:  $(SRC_MT_Loop5_8x6Kernel) $(UTIL_OBJS) Makefile
 	$(LINKER) $(CFLAGS) -D'MC=$(MC)' -D'NC=$(NC)' -D'KC=$(KC)' -D'MR=8' -D'NR=6' $(SRC_MT_Loop5_8x6Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_MT_Loop5_8x6Kernel.x $(LDFLAGS) 
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_MT_Loop5_8x6Kernel.x > data/output_MT_Loop5_8x6Kernel.m 
+	echo "$(NREPEATS) $(NFIRST) 2500 $(NINC)" | ./driver_MT_Loop5_8x6Kernel.x > data/output_MT_Loop5_8x6Kernel.m 
 	tail data/output_MT_Loop5_8x6Kernel.m
 
 # ---------------------
@@ -184,7 +184,7 @@ MT_Loop2_MT_PackA_8x6Kernel:  $(SRC_MT_Loop2_MT_PackA_8x6Kernel) $(UTIL_OBJS) Ma
 
 # ---------------------
 
-SRC_MT_Loop2_MT_PackA_A12x4Kernel := driver.c Gemm_MT_Loop2_MRxNRKernel.c Gemm_12x4Kernel_Packed.c MT_PackA.c PackB.c
+SRC_MT_Loop2_MT_PackA_12x4Kernel := driver.c Gemm_MT_Loop2_MRxNRKernel.c Gemm_12x4Kernel_Packed.c MT_PackA.c PackB.c
 
 MT_Loop2_MT_PackA_12x4Kernel:  $(SRC_MT_Loop2_MT_PackA_12x4Kernel) $(UTIL_OBJS) Makefile
 	$(LINKER) $(CFLAGS) -D'MC=$(MC)' -D'NC=$(NC)' -D'KC=$(KC)' -D'MR=12' -D'NR=4' $(SRC_MT_Loop2_MT_PackA_12x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_MT_Loop2_MT_PackA_12x4Kernel.x $(LDFLAGS) 
@@ -193,7 +193,25 @@ MT_Loop2_MT_PackA_12x4Kernel:  $(SRC_MT_Loop2_MT_PackA_12x4Kernel) $(UTIL_OBJS) 
 
 # ---------------------
 
-SRC_MT_Loop2_MT_PackAB_8x6Kernel := driver.c Gemm_MT_Loop2_MRxNRKernel_malloc.c Gemm_8x6Kernel_Packed.c MT_PackA.c MT_PackB.c
+SRC_MT_Loop2_MT_PackB_8x6Kernel := driver.c Gemm_MT_Loop2_MRxNRKernel.c Gemm_8x6Kernel_Packed.c MT_PackB.c PackA.c
+
+MT_Loop2_MT_PackB_8x6Kernel:  $(SRC_MT_Loop2_MT_PackB_8x6Kernel) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'MC=$(MC)' -D'NC=$(NC)' -D'KC=$(KC)' -D'MR=8' -D'NR=6' $(SRC_MT_Loop2_MT_PackB_8x6Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_MT_Loop2_MT_PackB_8x6Kernel.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_MT_Loop2_MT_PackB_8x6Kernel.x > data/output_MT_Loop2_MT_PackB_8x6Kernel.m 
+	tail data/output_MT_Loop2_MT_PackB_8x6Kernel.m
+
+# ---------------------
+
+SRC_MT_Loop2_MT_PackAB_8x6Kernel := driver.c Gemm_MT_Loop2_MRxNRKernel.c Gemm_8x6Kernel_Packed.c MT_PackB.c MT_PackA.c
+
+MT_Loop2_MT_PackAB_8x6Kernel:  $(SRC_MT_Loop2_MT_PackAB_8x6Kernel) $(UTIL_OBJS) Makefile
+	$(LINKER) $(CFLAGS) -D'MC=$(MC)' -D'NC=$(NC)' -D'KC=$(KC)' -D'MR=8' -D'NR=6' $(SRC_MT_Loop2_MT_PackAB_8x6Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_MT_Loop2_MT_PackAB_8x6Kernel.x $(LDFLAGS) 
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_MT_Loop2_MT_PackAB_8x6Kernel.x > data/output_MT_Loop2_MT_PackAB_8x6Kernel.m 
+	tail data/output_MT_Loop2_MT_PackAB_8x6Kernel.m
+
+# ---------------------
+
+SRC_MT_Loop2_MT_PackAB_8x6Kernel := driver.c Gemm_MT_Loop2_MRxNRKernel.c Gemm_8x6Kernel_Packed.c MT_PackA.c MT_PackB.c
 
 MT_Loop2_MT_PackAB_8x6Kernel:  $(SRC_MT_Loop2_MT_PackAB_8x6Kernel) $(UTIL_OBJS) Makefile
 	$(LINKER) $(CFLAGS) -D'MC=$(MC)' -D'NC=$(NC)' -D'KC=$(KC)' -D'MR=8' -D'NR=6' $(SRC_MT_Loop2_MT_PackAB_8x6Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_MT_Loop2_MT_PackAB_8x6Kernel.x $(LDFLAGS) 
@@ -211,7 +229,7 @@ MT_Loop2_MT_PackAB_12x4Kernel:  $(SRC_MT_Loop2_MT_PackAB_12x4Kernel) $(UTIL_OBJS
 
 # ---------------------
 
-SRC_MT_Loop3_MT_PackB_8x6Kernel := driver.c Gemm_MT_Loop3_MRxNRKernel_malloc.c Gemm_8x6Kernel_Packed.c PackA.c MT_PackB.c
+SRC_MT_Loop3_MT_PackB_8x6Kernel := driver.c Gemm_MT_Loop3_MRxNRKernel.c Gemm_8x6Kernel_Packed.c PackA.c MT_PackB.c
 
 MT_Loop3_MT_PackB_8x6Kernel:  $(SRC_MT_Loop3_MT_PackB_8x6Kernel) $(UTIL_OBJS) Makefile
 	$(LINKER) $(CFLAGS) -D'MC=$(MC)' -D'NC=$(NC)' -D'KC=$(KC)' -D'MR=8' -D'NR=6' $(SRC_MT_Loop3_MT_PackB_8x6Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_MT_Loop3_MT_PackB_8x6Kernel.x $(LDFLAGS) 
