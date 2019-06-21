@@ -48,14 +48,14 @@ end
 
 % Optionally, plot results for multithreaded Loop 2
 if ( 0 ) 
-    output_MT_Loop2_MT_PackAB_12x4Kernel
+    output_MT_Loop2_MT_12x4Kernel
     plot( data(:,1), data(:,5)/omp_num_threads , 'DisplayName', 'MT Loop 2', 'MarkerSize', 8, 'LineWidth', 2, ...
           'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 3,: ) );
 end
 
 % Optionally, plot results for multithreaded Loop 3
 if ( 0 ) 
-    output_MT_Loop3_MT_PackB_12x4Kernel
+    output_MT_Loop3_MT_12x4Kernel
     plot( data(:,1), data(:,5)/omp_num_threads , 'DisplayName', 'MT Loop 3', 'MarkerSize', 8, 'LineWidth', 2, ...
           'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 4,: ) );
 end
