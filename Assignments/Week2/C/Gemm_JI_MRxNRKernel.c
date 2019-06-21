@@ -5,6 +5,8 @@
 #define beta( i,j )  B[ (j)*ldB + (i) ]   // map beta( i,j ) to array B
 #define gamma( i,j ) C[ (j)*ldC + (i) ]   // map gamma( i,j ) to array C
 
+// The following definitions are not needed here because
+// MR and NR will be specified at compile time using Makefile.
 //#define MR 4
 //#define NR 4
 
