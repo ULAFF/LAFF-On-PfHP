@@ -29,7 +29,7 @@ box(axes1,'on');
 set( axes1, 'FontName', 'Helvetica Neue', 'FontSize', 18);         
 
 % Import the data for the five loops without parallelizing (but with packing)
-output_Five_Loops_Packed_12x4Kernel;
+output_Five_Loops_Packed_8x6Kernel;
 
 plot( data(:,1), data(:,5) , 'DisplayName', 'Single thread', 'MarkerSize', 8, 'LineWidth', 2, ...
       'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 1,: ) );
@@ -41,35 +41,35 @@ plot( data(:,1), data(:,3) , ...
   
 % Optionally, plot results for multithreaded Loop 1
 if ( 0 ) 
-    output_MT_Loop1_12x4Kernel
+    output_MT_Loop1_8x6Kernel
     plot( data(:,1), data(:,5)/omp_num_threads , 'DisplayName', 'MT Loop 1', 'MarkerSize', 8, 'LineWidth', 2, ...
           'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 2,: ) );
 end
 
 % Optionally, plot results for multithreaded Loop 2
 if ( 0 ) 
-    output_MT_Loop2_MT_12x4Kernel
+    output_MT_Loop2_8x6Kernel
     plot( data(:,1), data(:,5)/omp_num_threads , 'DisplayName', 'MT Loop 2', 'MarkerSize', 8, 'LineWidth', 2, ...
           'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 3,: ) );
 end
 
 % Optionally, plot results for multithreaded Loop 3
 if ( 0 ) 
-    output_MT_Loop3_MT_12x4Kernel
+    output_MT_Loop3_8x6Kernel
     plot( data(:,1), data(:,5)/omp_num_threads , 'DisplayName', 'MT Loop 3', 'MarkerSize', 8, 'LineWidth', 2, ...
           'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 4,: ) );
 end
 
 % Optionally, plot results for multithreaded Loop 4
 if ( 0 ) 
-    output_MT_Loop4_12x4Kernel
+    output_MT_Loop4_8x6Kernel
     plot( data(:,1), data(:,5)/omp_num_threads , 'DisplayName', 'MT Loop 4', 'MarkerSize', 8, 'LineWidth', 2, ...
           'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 5,: ) );
 end
 
 % Optionally, plot results for multithreaded Loop 3
 if ( 0 ) 
-    output_MT_Loop5_12x4Kernel
+    output_MT_Loop5_8x6Kernel
     plot( data(:,1), data(:,5)/omp_num_threads , 'DisplayName', 'MT Loop 5', 'MarkerSize', 8, 'LineWidth', 2, ...
           'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 6,: ) );
 end
@@ -89,4 +89,4 @@ legend1 = legend( axes1, 'show' );
 set( legend1, 'Location', 'south', 'FontSize', 12) ;
 
 % Uncomment if you want to create a png for the graph
-print( 'Plot_MT_GFLOPS_per_thread_12x4.png', '-dpng' );
+print( 'Plot_MT_GFLOPS_per_thread_8x6.png', '-dpng' );
