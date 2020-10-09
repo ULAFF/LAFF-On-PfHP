@@ -12,7 +12,7 @@ void MyGemm( int m, int n, int k, double *A, int ldA,
   double d_one = 1.0;
   
   for ( int i=0; i<m; i++ )
-    dgemv_( "Transpose", &k, &n, &d_one, B, &ldA, &alpha(  ,   ), &ldA,
+    dgemv_( "Transpose", &k, &n, &d_one, B, &ldB, &alpha(  ,   ), &ldA,
 	    &d_one, &gamma(  ,  ), &ldC );
 }
   
