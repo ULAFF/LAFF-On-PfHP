@@ -32,7 +32,7 @@
 % Live Script (LAFF-On-HPC/Assignments/Week1/C/data/).  This Live Script then 
 % creates graphs from that timing data for the orderings that are selected in 
 % the Live Script by placing a 1 in the if statement right before the appropriate 
-% section of the Live Script, and for the JIP ordering (the section for which 
+% section of the Live Script, and for the IJP ordering (the section for which 
 % is not enclosed by a conditional statement). Plot_All_Orderings.mlx as downloaded 
 % already has a 1 in the if statement right before the PIJ ordering. Go ahead 
 % and click on "Run All".  It executes all the code in the rest of this file which, 
